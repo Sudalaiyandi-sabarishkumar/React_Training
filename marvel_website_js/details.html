@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Book Details</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
   <nav class="navbar">
@@ -20,13 +21,18 @@
       <p id="bookCategory"></p>
     </div>
   </div>
-
+  <div id="loader">
+    <img src="https://i.gifer.com/ZZ5H.gif" width="50" alt="Loading...">
+  </div>
+  <script src="script.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
-    document.getElementById("bookImage").src = params.get("image");
-    document.getElementById("bookTitle").innerText = params.get("title");
-    document.getElementById("bookAuthor").innerText = "Author: " + params.get("author");
-    document.getElementById("bookCategory").innerText = "Category: " + params.get("category");
+    const id = params.get("id");
+
+if (id) {
+  fetchComicById(id);
+}
+
   </script>
 </body>
 </html>
