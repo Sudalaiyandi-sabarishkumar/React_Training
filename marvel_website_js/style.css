@@ -127,7 +127,7 @@ body {
 
 /* Details page */
 .details-container {
-  display: flex;
+  display: none;
   gap: 40px;
   max-width: 600px;
   padding: 30px;
@@ -141,6 +141,7 @@ body {
 .image-side img {
   max-width: 300px;
   border-radius: 10px;
+  
 }
 
 .info-side h1 {
