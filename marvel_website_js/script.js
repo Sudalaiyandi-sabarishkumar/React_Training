@@ -38,7 +38,7 @@ async function fetchMarvelComics(searchValue = "", filterValue = "") {
 
     const response = await fetch(url);
     const json = await response.json();
-    const comics = json.data.results.map(c => ({
+    const comics = json.data?.results?.map(c => ({
       id: c.id,
       title: c.title,
       author: c.creators.items.length > 0 ? c.creators.items[0].name : "Unknown",
@@ -92,6 +92,32 @@ async function fetchComicsByIds(ids) {
       hideLoader();
     }
   }
+  async function fetchComicById(id) {
+    try {
+      showLoader();
+  
+      const url = `https://gateway.marvel.com/v1/public/comics/${id}?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
+      const response = await fetch(url);
+      const json = await response.json();
+  
+      if (json.data.results.length > 0) {
+        const c = json.data.results[0];
+        document.getElementById("bookImage").src = `${c.thumbnail.path}.${c.thumbnail.extension}`;
+        document.getElementById("bookTitle").innerText = c.title;
+        document.getElementById("bookAuthor").innerText =
+          c.creators.items.length > 0 ? `Author: ${c.creators.items[0].name}` : "Author: Unknown";
+          document.getElementById("bookCategory").innerText = `Category: ${c.format}`;
+
+          
+          document.querySelector(".details-container").style.display = "flex";
+      }
+    } catch (error) {
+      console.error("Error fetching comic details:", error);
+    } finally {
+      hideLoader();
+    }
+  }
+  
   
 
 // Render comic cards
@@ -105,7 +131,7 @@ function renderCards(data, containerId = "cardsContainer") {
     return;
   }
 
-  data.forEach(book => {
+  data?.forEach(book => {
     const card = document.createElement("div");
     card.className = "card";
     card.innerHTML = `
@@ -117,7 +143,7 @@ function renderCards(data, containerId = "cardsContainer") {
     // Navigate to details page
     card.addEventListener("click", (e) => {
       if (e.target.classList.contains("favorite")) return;
-      window.location.href = `details.html?title=${encodeURIComponent(book.title)}&author=${encodeURIComponent(book.author)}&category=${encodeURIComponent(book.category)}&image=${encodeURIComponent(book.image)}`;
+      window.location.href = `details.html?id=${encodeURIComponent(book.id)}`;
     });
 
     // Toggle favourite
@@ -147,12 +173,22 @@ function renderFavourites() {
     fetchComicsByIds(favourites);
   }
 }
+function debounce(func, delay) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
 // Init (only on index.html)
 if (searchInput && filterDropdown) {
-  searchInput.addEventListener("input", () => {
+ 
+  const debouncedSearch = debounce(() => {
     fetchMarvelComics(searchInput.value.toLowerCase(), filterDropdown.value);
-  });
+  }, 500); 
+  searchInput.addEventListener("input", debouncedSearch);
+
 
   filterDropdown.addEventListener("change", () => {
     fetchMarvelComics(searchInput.value.toLowerCase(), filterDropdown.value);
