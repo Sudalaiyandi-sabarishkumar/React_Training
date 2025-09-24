@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Store</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Marvel</div>
+    <input type="text" id="searchInput" placeholder="Search books...">
+    <a href="favourites.html" class="favourites-link">Favourites</a>
+    <select id="filterDropdown">
+      <option value="">All</option>
+      <option value="comic">Comic</option>
+      <option value="magazine">Magazine</option>
+      <option value="hardcover">Hardcover</option>
+    </select>
+    
+  </nav>
+
+  <!-- Cards container -->
+  <div id="cardsContainer" class="cards"></div>
+  <div id="loader">
+    <img src="https://i.gifer.com/ZZ5H.gif" width="50" alt="Loading...">
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
