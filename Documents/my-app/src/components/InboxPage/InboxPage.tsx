@@ -60,7 +60,7 @@ const InboxPage: React.FC<InboxPageProps> = ({ size,initialCards,isInitialLoad,s
   const [editTitle, setEditTitle] = useState<string>("");
 
     useEffect(() => {
-      if (isInitialLoad && initialCards.length > 0 ) {
+      if (isInitialLoad && initialCards?.length > 0 ) {
         
         
         setLocalCards(initialCards);

@@ -1,5 +1,6 @@
+@import "../../Styles/variables.scss";
 .plannerContainer {
-  background: #f9fafc;
+  background: $planner-background;
   height: 100%;
   overflow-y: hidden;
   display: flex;
@@ -9,7 +10,7 @@
   .plannerCalendar {
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    background: #fff;
+    background: $secondary-white;
     width: 100%;
   }
 
