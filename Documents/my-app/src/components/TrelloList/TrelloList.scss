@@ -1,0 +1,302 @@
+@import "../../Styles/variables.scss";
+.trello-container {
+  font-family: sans-serif;
+}
+
+/* Expanded list */
+.list {
+  
+  border-radius: 12px;
+  padding: 10px;
+  width: 250px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.list-actions {
+  display: flex;
+  gap: 1px;
+}
+
+.collapse-btn,
+.expand-btn,
+.options-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+.expand-btn {
+  display: flex;       /* arrange icons horizontally */
+  align-items: center; /* vertical center */
+  justify-content: center;
+  gap: 2px;            /* space between icons */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 4px;  /* optional spacing from title */
+}
+
+.arrow-icons {
+  display: flex;       /* icons in a row */
+  gap: 2px;            /* space between arrows */
+}
+
+/* Collapsed view */
+.collapsed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* align top tighter */
+  
+  padding: 4px 8px; 
+  padding-bottom: 1rem;/* less padding top */
+  border-radius: 12px;
+  gap: 2px;
+  width: 30px;
+  cursor: default;
+}
+.collapsed:hover{
+  filter: brightness(85%);
+}
+
+.collapsed-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: bold;
+  margin-top: 2px;
+}
+.collapsed-length{
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 500;
+  margin-top: 7px;
+  color: $primary-blue;
+}
+
+.expand-btn {
+  margin-top: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Cards */
+.cardss {
+  display: flex;
+  padding-top: 20px;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+
+  /* Optional: for IE/Edge */
+  -ms-overflow-style: none;
+}
+
+.card button{
+  padding: 3px 5px;
+  
+  color: black; 
+}
+
+.card {
+  background: $primary-white;
+  padding:5px 8px !important;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+.card-radio {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%; /* round */
+  border: 2px solid #ccc;
+  appearance: none; /* remove default checkbox */
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  display: none;
+  vertical-align: middle;
+  margin-right: 8px;
+  transition: all 0.2s ease;
+  background-color: $primary-white;
+}
+
+.card-radio::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-20%);
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Show tooltip on hover */
+.card-radio:hover::before {
+  opacity: 1;
+}
+
+/* Checked state */
+.card-radio:checked {
+  background-color: $card-radio-color; /* green fill */
+  border-color: $card-radio-color;
+}
+
+/* Tick mark */
+.card-radio:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: $primary-white;
+}
+
+
+.card-content {
+  display: flex;
+  justify-content: space-between; /* left and right sides */
+  align-items: center;
+  width: 100%;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between checkbox and title */
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* space between edit & delete buttons */
+}
+
+/* Show buttons always on right, no hover needed */
+.edit-btn, .delete-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+.card-content:hover .card-radio{
+  display: inline-block;
+}
+.card-content:hover .edit-btn, .delete-btn{
+  display: inline-block;
+}
+
+
+
+
+
+/* Add card button */
+.add-card-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: #6b5000;
+  font-weight: 500;
+  cursor: pointer;
+
+  /* align left */
+  display: flex;
+  justify-content: flex-start;
+  width: 100%; 
+  text-align: left; 
+}
+.add-card-btn:hover{
+  filter: brightness(85%);
+}
+
+/* Add card form */
+.add-card-form {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-card-form input {
+  padding: 6px;
+  padding-bottom: 30px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.edit-input{
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.card-input{
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.actions {
+  display: flex;
+  gap: 6px;
+}
+
+.actions button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $primary-black;
+}
+.add-btn-card{
+  background-color: $primary-blue !important;
+  color: $primary-white !important;
+}
+.edit-card-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between input and save button */
+}
+
+.edit-card-inline input {
+  flex: 1; /* input takes remaining width */
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.edit-card-inline button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: $primary-blue;
+  color: $primary-white;
+}

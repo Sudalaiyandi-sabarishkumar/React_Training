@@ -1,0 +1,27 @@
+.plannerContainer {
+  background: #f9fafc;
+  height: 100%;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  .plannerCalendar {
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    background: #fff;
+    width: 100%;
+  }
+
+  &.embedded {
+    justify-content: flex-start;
+    align-items: stretch;
+
+
+    
+    .plannerCalendar {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

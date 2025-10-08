@@ -1,0 +1,488 @@
+/* --- Variables --- */
+@import "../../Styles/variables.scss";
+:root {
+    --trello-blue-start: #f0f4ff;
+    --trello-blue-end: #d6e2ff;
+    --primary-text: #172b4d;
+    --secondary-text: #5e6c84;
+    --card-bg: #ffffff;
+    --border-color: #cdd8e6;
+    --active-tab-bg: #e4f0ff;
+    --active-tab-border: #0079bf;
+}
+
+/* --- Layout and Background --- */
+.inbox-page-layout {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0.5rem;
+    
+    /* Gentle gradient background matching the image */
+    background: linear-gradient(180deg, $trello-blue-start 0%, $trello-blue-end 100%);
+    color: var(--primary-text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: var(--card-bg); /* White header background */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.inbox-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-placeholder {
+    /* Styles for the Trello logo placeholder */
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+    /* Trello blue placeholder */
+    border-radius: 4px;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--secondary-text);
+    border-radius: 3px;
+}
+
+.icon-btn:hover {
+    background-color: #f4f5f7;
+}
+
+.icon-sm {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* --- Responsiveness: Hide right actions on non-desktop views --- */
+@media (max-width: 768px) {
+    /* This class targets the right-side actions div */
+    .inbox-header-right.desktop-only {
+        display: none; /* Crucially hides the notifications and more options icons */
+    }
+}
+.inbox-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.5rem;
+    width: 100%;
+    
+    padding-bottom: 80px; /* Space for the fixed bottom nav */
+}
+
+/* --- Header Styling --- */
+.inbox-header {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color: transparent; /* White header background */
+    border: none !important;
+}
+
+.inbox-header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.inbox-header-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.logo-placeholder {
+    width: 24px;
+    height: 24px;
+    background-color: #0079bf; /* Trello blue placeholder */
+    border-radius: 4px;
+}
+
+.header-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--secondary-text);
+    border-radius: 3px;
+}
+
+.icon-btn:hover {
+    background-color: #f4f5f7;
+}
+
+.icon-sm {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* --- Add a Card Input --- */
+.add-card-container {
+    display: flex;
+    align-items: center;
+    
+    justify-content: center; /* center input inside container */
+    width: 91%;              /* same as fetched-cards */
+    max-width: 60rem;  
+    
+         /* same as fetched-cards */
+             /* center the container itself */
+}
+
+
+.add-card-input {
+    width: 100%;
+    /* fill the container */
+    max-width: 100%;
+    padding: 10px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    font-size: 16px;
+    color: var(--primary-text);
+    outline: none;
+}
+
+.add-card-input::placeholder {
+    color: var(--secondary-text);
+}
+
+/* --- Consolidation Section --- */
+.consolidation-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    color: var(--secondary-text);
+    margin: 0;
+}
+
+/* --- Integration Icons (The floating circle icons) --- */
+.integration-icons {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 60px;
+}
+.integration-icons-row.fixed-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center; /* centers children horizontally */
+    align-items: center;     /* centers children vertically */
+    gap: 1rem;               /* spacing between icons */
+    padding: 0.5rem;
+    width: 80%;
+    max-width: 60rem;
+    border-radius: 0.8rem;
+    margin-bottom: 170px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-top: 1px solid var(--border-color);
+    z-index: 1000;
+    
+}
+
+.integration-icons-row.fixed-bottom .icon-circle {
+    position: static; /* no absolute positioning */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+.integration-icons-row.fixed-bottom .icon-circle:hover {
+    border:2px solid #0079bf;
+}
+.integration-icons .icon-circle:hover {
+    border:2px solid #0079bf;
+}
+.integration-icons-row.fixed-bottom .icon-circle img {
+    width: 60%;      // fits nicely inside the circle
+    height: 60%;
+    object-fit: contain; // keeps aspect ratio
+  }
+  .integration-icons .icon-circle img {
+    width: 60%;      // fits nicely inside the circle
+    height: 60%;
+    object-fit: contain; // keeps aspect ratio
+  }
+  
+.icon-circle {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.fetched-cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 80%;
+    max-width: 60rem;
+    
+    
+}
+.fetched-cards .cards {
+    background-color: white;
+    color: black;
+    padding: 0.3rem 1rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    /* subtle bottom-only shadow */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease; /* optional: smooth hover effect */
+}
+
+.fetched-cards .cards:hover {
+    /* slightly stronger bottom shadow on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Positioning the icons based on the image's layout */
+.email-icon { top: 10%; left: 50%; transform: translate(-50%, -50%); }
+.teams-icon { top: 40%; left: 25%; transform: translate(-50%, -50%); }
+.mobile-icon { top: 75%; left: 40%; transform: translate(-50%, -50%); }
+.slack-icon { top: 50%; left: 80%; transform: translate(-50%, -50%); }
+
+.email-icons { background-color: #d8f5ff; border-color: #0079bf;}
+.teams-icons {  background-color: #a4a1ff; }
+.mobile-icons { }
+.slack-icons {   background-color: #ffc99f; }
+
+
+/* --- Visibility Message --- */
+.visibility-message {
+    font-size: 14px;
+    color: var(--secondary-text);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+/* Only cards inside fetched-cards */
+.fetched-cards .card {
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+  }
+  
+  /* Card content inside fetched-cards */
+  .fetched-cards .card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+    width: 100%;
+    
+  }
+  .fetched-cards .left {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* space between checkbox and title */
+  }
+  
+  .fetched-cards .right {
+    display: flex;
+    
+    align-items: center;
+    gap: 0px !important; /* space between edit & delete buttons */
+  }
+  
+  /* Radio button and edit icon hidden by default */
+  .fetched-cards .card-radio,
+  .fetched-cards .edit-btn {
+    display: none;
+  }
+
+    
+  /* Show radio and edit on hover */
+  .fetched-cards .cards:hover .card-radio {
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .fetched-cards .cards:hover .edit-btn,.delete-btn {
+    display: inline-block;
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: black;
+    cursor: pointer;
+  }
+  
+  /* Inline editing container */
+  .fetched-cards .edit-card-inline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Input inside inline editing */
+  .fetched-cards .edit-card-inline input {
+    flex: 1; /* take remaining width */
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Buttons inside inline edit */
+  .fetched-cards .edit-card-inline button {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: blue;
+    color: white;
+  }
+  
+  /* Optional: Add smooth hover effect */
+  
+  
+  /* Add Card Button */
+  .fetched-cards .add-btn-card {
+    background-color: blue !important;
+    color: white !important;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Input for adding new card */
+  .fetched-cards .card-input {
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  /* General actions inside a card */
+  .fetched-cards .actions {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .fetched-cards .actions button {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    color: black;
+  }
+  .search-bar-container {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 60rem;
+  }
+  .search-bar-container input {
+    width: 100%;
+    max-width: 400px; /* optional: limit input width */
+    padding: 3px 12px;
+    border-radius: 6px;
+   
+    font-size: 1rem;
+  }
+  
+/* --- Bottom Navigation --- */
+
+
+
+
+
+/* =======================================
+   RESPONSIVENESS (Media Queries)
+   ======================================= */
+
+/* Hide right header actions (desktop-only elements) on screens smaller than 768px (Mobile/Tablet) */
+@media (max-width: 768px) {
+    .inbox-header-right.desktop-only {
+        display: none; /* Hides the Notifications and More Options icons */
+    }
+
+    .bottom-nav-container {
+        /* Allow the bottom nav to take full width on smaller screens */
+        max-width: 100%;
+    }
+}
+
+/* Adjustments for very small mobile screens */
+@media (max-width: 480px) {
+    .nav-tab {
+        flex-direction: column; /* Stack icon and text vertically to save space */
+        gap: 2px;
+        font-size: 12px;
+        padding: 6px 4px;
+    }
+    
+    .nav-tab .icon-sm {
+        font-size: 16px;
+    }
+    
+    .add-card-container {
+        margin-bottom: 40px; /* Reduce vertical spacing on small screens */
+    }
+}

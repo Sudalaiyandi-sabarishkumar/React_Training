@@ -1,0 +1,208 @@
+/* Base Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;         /* full width */
+  height: 40px;     /* fixed height (matches padding) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #4a23c5; /* purple background */
+  padding: 0.4rem 1rem;
+  color: white;
+  font-family: Arial, sans-serif;
+  z-index: 1000;    /* stay above other content */
+}
+
+/* Left */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+}
+.logo-text {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Center */
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+  max-width: 900px;
+  margin: 0 1rem;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  flex: 1;
+}
+.search-box input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+  padding: 0.3rem;
+}
+.search-icon {
+  margin-right: 0.5rem;
+  color: #ddd;
+}
+.create-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.create-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Right */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .profile {
+    position: relative;
+    background: #333;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+  
+    .profile-popup {
+      position: absolute;
+      top: 35px;
+      right: 0;
+      background: #fff;
+      color: #333;
+      border-radius: 0.5rem;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 0.5rem 0;
+      z-index: 100;
+    
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    
+        li {
+          padding: 0.5rem 1rem;
+          font-size: small;
+          cursor: pointer;
+          display: flex;
+          align-items: center; /* ensures vertical alignment */
+          justify-content: flex-start; /* align all items left */
+    
+          &:hover {
+            background: #f0f0f0;
+          }
+    
+          /* make logout button behave like text item */
+          .logout-btn {
+            background: transparent;
+            border: none;
+            color: black;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            text-align: left; /* aligns text to start */
+            padding: 0; /* removes browser default padding */
+            margin: 0; /* removes default button margin */
+            font-size: inherit; /* keeps same size as li text */
+          }
+        }
+    
+        .popup-header {
+          display: flex;
+          justify-content: space-between;
+          font-weight: bold;
+          border-bottom: 1px solid #ddd;
+          margin-bottom: 0.3rem;
+    
+          .close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+    
+  }
+}
+
+.trial-btn {
+  background: linear-gradient(90deg, #ff4eb3, #408cff);
+  border: none;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.icon {
+  font-size: 1rem;
+  cursor: pointer;
+}
+.icon:hover {
+  color: #ddd;
+}
+.user-details {
+  margin-left: 10px;
+  display: flex;
+
+  flex-direction: column;
+  gap: 2px; /* remove gap */
+  align-items: start;
+
+  p {
+    margin: 0;       /* remove default margin */
+    line-height: 1.2; /* optional: tighter spacing */
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-center {
+    max-width: 350px;
+  }
+  .create-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    display: none;
+  }
+  .search-box {
+    display: none;
+  }
+  .trial-btn {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+}

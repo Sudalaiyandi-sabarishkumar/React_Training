@@ -1,0 +1,40 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 0.5rem 1rem;
+    gap: 1rem;
+    z-index: 1000;
+  }
+  .separator {
+    width: 1px;
+    height: 16px;
+    background-color: black;
+    margin: 0 4px;
+}
+  
+  .bottom-nav button {
+    background: transparent;
+    border: none;
+    
+  outline: none;   /* removes focus outline */
+  box-shadow: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    color: #444;
+
+  }
+  
+  .bottom-nav button.active {
+    color: #0066ff;
+    font-weight: bold;
+    background: #eaf1ff;
+  }
+  

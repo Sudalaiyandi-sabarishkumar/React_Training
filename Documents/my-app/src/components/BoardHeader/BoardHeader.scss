@@ -1,0 +1,420 @@
+/* --- Variables for easy color adjustments --- */
+:root {
+    --trello-purple-start: #5a2e6f; /* Darker purple */
+    --trello-purple-end: #8352a9;   /* Lighter purple */
+    --text-color: #ffffff;
+    --button-bg: rgba(255, 255, 255, 0.2);
+    --share-btn-bg: #e6e6e6;
+    --share-btn-text: #172b4d;
+}
+
+/* --- Base Header Styling --- */
+.trello-header {
+    display: flex;
+    position: sticky;   /* stick inside the scrollable container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+
+    padding: 5px 5px;
+    height: 48px; /* Standard Trello header height */
+    
+    /* Gradient Background matching the image */
+    background: linear-gradient(90deg, var(--trello-purple-start) 0%, var(--trello-purple-end) 100%);
+    color: var(--text-color);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    flex-wrap: nowrap; /* Prevent wrapping in the main header */
+}
+
+/* --- Left Section (Board Info) --- */
+.trello-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between board elements */
+    min-width: 0; /* Important for responsiveness/truncation */
+}
+
+.board-title {
+    font-size:10px;
+    font-weight: 500;
+    margin: 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    white-space: nowrap; /* Keep title on one line */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Visual feedback on hover */
+    transition: background-color 0.2s;
+}
+
+.board-title:hover {
+    background-color: var(--button-bg);
+}
+
+/* --- Right Section (Tools & Actions) --- */
+.trello-header-right {
+    display: flex;
+    align-items: center;
+    padding-right: 10px !important;
+    gap: 12px;
+}
+
+.trello-tools {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Tight spacing for icons */
+}
+
+/* --- Button Styling (General) --- */
+.icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    border: none;
+    border-radius: 3px;
+    background-color: transparent;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 16px;
+    
+    flex-shrink: 0; /* Prevent icons from shrinking */
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-sm {
+    font-size: 14px; /* Adjusting placeholder icon size */
+    line-height: 1;
+}
+
+/* --- Separators --- */
+.separator {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px;
+}
+
+.separator-vertical {
+    width: 1px;
+    height: 16px;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0 4px; /* Shorter vertical separator for right section */
+}
+
+/* --- Avatar/Member Styling --- */
+.member-avatars {
+    display: flex;
+    align-items: center;
+    margin-right: 4px;
+}
+.more-sm-icon{
+    color: white;
+}
+.more-sm-icon:hover{
+    color: gray !important;
+}
+.avatar {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: black; /* Placeholder color 1 */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    border: 2px solid var(--trello-purple-start); /* Border to simulate stacking */
+    margin-left: -8px; /* Stack effect */
+}
+
+.avatar:first-child {
+    margin-left: 0; /* Remove negative margin for first avatar */
+    z-index: 2;
+}
+
+.avatar-2 {
+    background-color: #ff9f1a; /* Placeholder color 2 */
+    z-index: 1;
+}
+
+/* --- Share Button --- */
+.share-btn {
+    display: flex;
+    align-items: center;
+    padding: 3px 9px;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--share-btn-bg);
+    color: var(--share-btn-text);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.share-btn:hover {
+    background-color: #d8d8d8;
+}
+
+.share-btn .icon-share {
+    margin-right: 4px;
+}
+.icon{
+    padding: 5px;
+    border-radius: 5px;
+}
+.icon:hover{
+    
+    background-color: #7D818A;
+}
+/* --- More Options Button (The '···' button) --- */
+.more-options-btn {
+    width: 32px;
+    font-size: 18px;
+    color: white !important;
+     /* Visual adjustment for '···' */
+}
+.more-options-btn:hover{
+    background-color: gray !important;
+}   
+.board-menu-popup {
+    position: absolute;
+    top: 40px;
+    right: 1.5%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    width: 320px;
+    z-index: 999;
+    padding: 8px 0;
+  
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+  
+      li {
+        display: flex;
+        align-items: center;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: small;
+        gap: 1rem;
+        color: black;
+  
+        &:hover {
+          background-color: #f4f4f4;
+        }
+  
+        .menu-icon {
+          width: 16px;
+          height: 16px;
+        }
+  
+        .avatar {
+          margin-left: auto; // push avatar to the right
+        }
+      }
+  
+      // Menu header
+      .menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: center; // center the title
+        font-weight: 600;
+        font-size: medium;
+        position: relative; // for absolute close button
+        padding: 12px;
+  
+        .menu-title {
+          text-align: center;
+          flex: 1;
+        }
+  
+        .close-btn {
+          position: absolute;
+          right: 12px;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+  
+      .menu-item .avatar {
+        margin-left: auto; // align user profile to right
+      }
+    }
+  }
+  .background-popup {
+    position: absolute;
+    top: 50px;
+    right: 1.5%;
+    width: 350px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 12px;
+  
+    .popup-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: medium;
+  
+      button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+      }
+    }
+  
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+  
+      button {
+        flex: 1;
+        padding: 6px 0;
+        cursor: pointer;
+        border: none;
+        background: #f0f0f0;
+        border-radius: 4px;
+  
+        &.active {
+          background: #d6e2ff;
+          font-weight: 600;
+        }
+      }
+    }
+   
+    .tab-content {
+      margin-top: 12px;
+  
+      .colors-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+  
+        .color-swatch {
+          height: 40px;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+  
+        .gradient1 { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+        .gradient2 { background: linear-gradient(45deg, #a1c4fd, #c2e9fb); }
+        .gradient3 { background: linear-gradient(45deg, #d4fc79, #96e6a1); }
+      }
+  
+      .photos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+  
+        img {
+          width: 100%;
+          height: 60px;
+          object-fit: cover;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .change-bg-btn{
+    margin-left: -20px;
+    background-color: transparent;
+  }
+  .bg-preview {
+    width: 17px;
+    height: 17px;
+    border-radius: 4px;
+    
+    cursor: pointer;
+    border: 1px solid #ccc;
+  }
+  
+
+  
+
+/* =======================================
+   RESPONSIVENESS (Media Queries)
+   ======================================= */
+
+/* Small Devices (e.g., Mobile view) */
+@media (max-width: 600px) {
+    .trello-header {
+        padding: 8px;
+    }
+
+    /* Hide less critical info on smaller screens */
+    .separator,
+    .menu-btn,
+    .star-btn,
+    .avatar:not(:first-child) {
+        display: none;
+    }
+    
+    /* Move main board info (title/visibility) to the left and action buttons to the right */
+    .trello-header-left {
+        flex-grow: 1;
+        gap: 4px;
+    }
+    .icon-sm{
+        color: white !important;
+    }
+
+    /* Reduce padding on the title */
+    .board-title {
+        padding: 4px;
+        max-width: 120px; /* Truncate title more aggressively */
+    }
+
+    /* Hide the 'Share' text, keep only the icon */
+    .share-btn {
+        padding: 6px; /* Square button */
+        font-size: 0; /* Hide text */
+    }
+    
+    .share-btn .icon-share {
+        margin-right: 0; /* Center icon */
+        font-size: 16px;
+    }
+
+    /* Adjust spacing for tight right-hand grouping */
+    .trello-header-right {
+        gap: 4px;
+    }
+
+    .trello-tools {
+        gap: 5px;
+    }
+
+    .avatar {
+        height: 28px;
+        width: 28px;
+        font-size: 12px;
+    }
+}

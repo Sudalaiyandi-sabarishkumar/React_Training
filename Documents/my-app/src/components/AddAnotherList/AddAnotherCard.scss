@@ -1,0 +1,74 @@
+
+  
+  /* Default Add Another List button */
+  .add-another-list-btns {
+    display: flex;
+    align-items: center;
+    
+    background: white !important; /* light grey */
+    padding: 5px  8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #172b4d !important;
+    transition: background 0.2s;
+  }
+  .add-another-list-containers{
+    width: 100%;
+    
+  }
+  
+  .add-another-list-btn:hover {
+    background: #dadada;
+  }
+  
+  .plus-icon {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  /* Input form for adding list */
+  .add-another-list-forms {
+    display: flex;
+    flex-direction: column;
+    background: white;    
+    border-radius: 1rem;
+    padding: 0.5rem;
+    
+    gap: 6px;
+  }
+  .add-another-list-containers{
+    width: 100%;
+  }
+
+  .add-another-list-forms input {
+    padding: 0.5rem;
+    
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .actions {
+    display: flex;
+    gap: 6px;
+  }
+  
+  .save-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: #1868DB !important;
+    color: white !important;
+    cursor: pointer;
+  }
+  
+  .cancel-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    background: #f44336;
+    color: white;
+    cursor: pointer;
+  }
